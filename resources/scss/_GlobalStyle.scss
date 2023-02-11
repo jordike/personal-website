@@ -1,0 +1,81 @@
+﻿@import "_Variables.scss";
+
+html {
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+    min-height: 100%;
+
+    body {
+        margin-bottom: 60px;
+    }
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+
+    .form-label-subtitle {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+}
+
+.bold {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: darken($theme-color, 10%);
+}
+
+.required-input::after {
+    content: "*";
+    color: red;
+    margin-left: 5px;
+}
+
+.form-control {
+    border-radius: 0;
+    height: 42px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: none;
+    border-bottom: #ced4da 1px solid;
+    /*background-color: #f6f6f6;*/
+
+    &:focus {
+        background-color: initial !important;
+        box-shadow: none !important;
+        border-bottom: $theme-color 1px solid;
+    }
+}
+
+.btn-check:checked
++ .btn:focus-visible,
+:not(.btn-check)
++ .btn:active:focus-visible,
+.btn:first-child:active:focus-visible,
+.btn.active:focus-visible,
+.btn.show:focus-visible,
+.dropdown-toggle:focus-visible {
+    box-shadow: none !important;
+}
+
+.form-check-input[type="checkbox"] {
+    border-radius: 0;
+    box-shadow: none;
+    width: 18px;
+    height: 18px;
+}
+
+::selection {
+    background-color: #ffa50077;
+    color: white;
+}

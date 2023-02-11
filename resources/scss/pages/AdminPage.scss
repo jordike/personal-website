@@ -1,0 +1,16 @@
+﻿@import "../_Variables.scss";
+
+.list-group-item {
+    .more-options-button {
+        width: 100% !important;
+        text-align: left;
+
+        &:active {
+            outline: none;
+        }
+    }
+
+    &:hover {
+        background-color: darken(white, 5%);
+    }
+}

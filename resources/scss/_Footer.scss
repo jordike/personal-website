@@ -1,0 +1,47 @@
+﻿main {
+    margin-bottom: 280px;
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        margin-bottom: 392px;
+    }
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: $black-color;
+    color: $white-color;
+
+    ul {
+        list-style-type: none;
+    }
+
+    a,
+    .contact-info-link {
+        color: $white-color;
+        text-decoration: none;
+
+        &:hover {
+            color: darken($white-color, 15%);
+        }
+    }
+
+    #footer-info {
+        padding: 50px;
+        /*text-align: center;*/
+    }
+
+    #copyright {
+        width: 100%;
+        background-color: $lighter-black;
+        text-align: center;
+        padding: 10px;
+    }
+}
+
+.contact-info-link {
+    text-decoration: underline dotted !important;
+}

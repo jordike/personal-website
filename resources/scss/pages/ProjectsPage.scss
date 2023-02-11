@@ -1,0 +1,18 @@
+﻿@import "../_Variables.scss";
+
+.project-body-title {
+    color: $theme-color;
+    text-transform: uppercase;
+}
+
+ul {
+    list-style-type: square;
+
+    li {
+        color: darken(white, 50%);
+    }
+}
+
+.project-description {
+    min-width: 250px;
+}

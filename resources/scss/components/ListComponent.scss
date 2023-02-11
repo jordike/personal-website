@@ -1,0 +1,107 @@
+﻿@import "../_Variables.scss";
+
+.vertical-line {
+    display: block;
+    background-color: $theme-color;
+    width: 5px;
+    height: 100%;
+    position: relative;
+    left: -2.5px;
+}
+
+.circle {
+    display: block;
+    background-color: $theme-color;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    position: relative;
+    top: -50%;
+    left: -10px;
+    transform: translateY(-50%);
+
+    .inner-circle {
+        display: block;
+        background-color: lighten($theme-color, 15%);
+        position: relative;
+        left: 20%;
+        top: 20%;
+        width: 60%;
+        height: 60%;
+        border-radius: 100%;
+    }
+}
+
+.list-item {
+    $experience-padding: 5px;
+
+    background-color: darken(#fff, 3%);
+    width: 100%;
+    margin: 10px;
+    border-radius: 10px;
+
+    &-header {
+        padding: 10px;
+        background-color: lighten($lighter-black, 12.5%); //lighten($black-color, 40%);
+
+        .list-item-title {
+            color: white;
+        }
+    }
+
+    &-body {
+        padding: $experience-padding;
+        padding-left: 0;
+
+        &-section-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            color: darken($theme-color, 10%);
+        }
+
+        .function {
+            padding: 5px;
+            padding-left: 15px;
+            margin-bottom: 10px;
+            //background-color: lightgray;
+            border-left: $theme-color 2px solid;
+        }
+    }
+
+    &-footer {
+        padding: $experience-padding;
+        padding-left: 20px;
+        background-color: darken(#fff, 10%);
+        min-height: 34px;
+    }
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.list-item-title {
+    display: relative;
+    transition: 0.3s;
+
+    &:before {
+        content: "";
+        color: transparent;
+        position: absolute;
+        font-size: 24px;
+        left: 0;
+        transition: 0.2s;
+        transition-delay: 0.1s;
+        font-weight: bold;
+    }
+
+    &:hover {
+        transform: translateX(20px);
+
+        &:before {
+            content: "#";
+            color: darken(white, 40%);
+            left: -20px;
+        }
+    }
+}

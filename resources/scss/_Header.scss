@@ -1,0 +1,106 @@
+﻿.navbar {
+    background-color: $black-color;
+
+    .nav-link,
+    .navbar-brand {
+        background-color: transparent;
+        color: $white-color;
+        box-sizing: border-box;
+    }
+
+    .nav-item {
+        border-color: darken($theme-color, 20%);
+        border-width: 0;
+
+        &:hover {
+            border-bottom: solid $theme-color 1px;
+            // Compensate for the 1px height of the border.
+            margin-bottom: -1px;
+        }
+
+        .nav-link:hover,
+        &:hover {
+            color: darken($white-color, 20%);
+        }
+
+        &:active {
+            color: darken($white-color, 20%);
+        }
+    }
+
+    .nav-link::after {
+        color: darken($white-color, 30%);
+    }
+
+    .navbar-toggler,
+    .navbar-toggler:active {
+        box-shadow: none;
+        border: none;
+    }
+
+    .btn {
+        border-radius: 0;
+    }
+
+    .dropdown-menu {
+        background-color: lighten($black-color, 10%);
+
+        .nav-link:hover {
+            color: darken($white-color, 25%);
+            border-bottom: none;
+            margin-bottom: 0;
+            border-left: solid $theme-color 1px;
+        }
+    }
+
+    .navbar-toggler {
+        #navbar-toggler-icon {
+            width: 3rem;
+            height: 3rem;
+
+            line {
+                stroke: $white-color;
+                stroke-width: 2px;
+                transform-origin: 50%;
+                transition: transform .2s ease;
+
+                &:nth-child(1) {
+                    transform: translateY(-6px);
+                }
+
+                &:nth-child(2) {
+                    transform: scale(1);
+                }
+
+                &:nth-child(3) {
+                    transform: translateY(6px);
+                }
+            }
+        }
+
+        &:not(.collapsed) {
+            #navbar-toggler-icon {
+                line {
+                    &:nth-child(1) {
+                        transform: rotate(45deg) translateY(0);
+                    }
+
+                    &:nth-child(2) {
+                        transform: scale(0,1);
+                    }
+
+                    &:nth-child(3) {
+                        transform: rotate(-45deg) translateY(0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+#theme-toggle {
+    border: none;
+    background-color: transparent;
+    color: white;
+    width: 30px;
+}

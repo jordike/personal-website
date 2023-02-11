@@ -1,0 +1,54 @@
+﻿@import "../_GlobalStyle.scss";
+@import "../_Variables.scss";
+
+.navbar {
+    margin-bottom: 0;
+}
+
+#introduction {
+    background-color: $lighter-black;
+    width: 100%;
+    padding: 50px;
+
+    #name {
+        font-size: 55px;
+        color: $white-color;
+        margin-bottom: 10px;
+    }
+
+    .function-title {
+        &-character {
+            margin-right: 1px;
+            color: $theme-color;
+            font-size: 22px;
+        }
+
+        &-up {
+            position: relative;
+            top: -15px;
+            animation: character-move-animation 1s forwards;
+        }
+        
+        &-down {
+            position: relative;
+            top: 15px;
+            animation: character-move-animation 1s forwards;
+        }
+    }
+
+    .function-title-space {
+        display: inline-block;
+        width: 5px;
+    }
+
+    @keyframes character-move-animation {
+        100% {
+            top: 0;
+        }
+    }
+}
+
+.info-section {
+    width: 100%;
+    padding: 10px;
+}

@@ -1,0 +1,12 @@
+﻿@import "_Variables.scss";
+
+$primary: $theme-color;
+
+@import "lib/bootstrap/bootstrap.scss";
+@import "_DarkTheme.scss";
+@import "_GlobalStyle.scss";
+
+@import "_Header.scss";
+@import "_Footer.scss";
+
+@import "components/alert.scss";
