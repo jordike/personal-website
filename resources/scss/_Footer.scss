@@ -1,10 +1,14 @@
 ﻿main {
-    margin-bottom: 280px;
+    margin-bottom: 350px;
 }
 
 @media screen and (max-width: 768px) {
     main {
-        margin-bottom: 392px;
+        margin-bottom: 531px;
+    }
+
+    .footer-section {
+        width: 100% !important;
     }
 }
 
@@ -38,10 +42,27 @@ footer {
         width: 100%;
         background-color: $lighter-black;
         text-align: center;
-        padding: 10px;
+        padding: 15px;
+
+        p {
+            margin: 0;
+        }
     }
 }
 
 .contact-info-link {
     text-decoration: underline dotted !important;
+}
+
+.footer-section {
+    width: fit-content;
+    padding: 5px;
+}
+
+.footer-link {
+    display: block;
+}
+
+.footer-social-media {
+    font-size: 30px;
 }
