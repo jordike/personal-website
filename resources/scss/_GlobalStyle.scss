@@ -30,7 +30,8 @@ html {
     font-weight: bold;
 }
 
-a {
+a,
+.btn-link {
     text-decoration: none;
     color: darken($theme-color, 10%);
 }

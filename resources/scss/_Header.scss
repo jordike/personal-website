@@ -19,11 +19,9 @@
         }
 
         .nav-link:hover,
-        &:hover {
-            color: darken($white-color, 20%);
-        }
-
-        &:active {
+        &:hover,
+        &:active,
+        #theme-toggle:hover {
             color: darken($white-color, 20%);
         }
     }
