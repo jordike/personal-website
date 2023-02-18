@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use Illuminate\Support\Facades\Gate;
 
 class ProjectsController extends Controller
 {
@@ -28,6 +29,8 @@ class ProjectsController extends Controller
      */
     public function create()
     {
+        Gate::authorize("perform-admin-task", auth()->user());
+
         return view("projects.create");
     }
 
@@ -39,7 +42,24 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Gate::authorize("perform-admin-task", auth()->user());
+
+        $request->validate([
+            "name" => [ "required", "max:40" ],
+            "description" => [ "required", "min:4", "max:500" ],
+        ]);
+
+        $project = new Project;
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->programming_languages = $request->programmingLanguages;
+        $project->tools = $request->tools;
+        $project->links = $request->links;
+        $project->save();
+
+        session()->flash("message", "project.created");
+
+        return redirect()->route("projects.index");
     }
 
     /**
@@ -61,7 +81,13 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        Gate::authorize("perform-admin-task", auth()->user());
+
+        $project = Project::find($id);
+
+        return view("projects.edit", [
+            "project" => $project
+        ]);
     }
 
     /**
@@ -73,7 +99,24 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Gate::authorize("perform-admin-task", auth()->user());
+
+        $request->validate([
+            "name" => [ "required", "max:40" ],
+            "description" => [ "required", "min:4", "max:500" ],
+        ]);
+
+        $project = Project::find($id);
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->programming_languages = $request->programmingLanguages;
+        $project->tools = $request->tools;
+        $project->links = $request->links;
+        $project->update();
+
+        session()->flash("success", "project.updated");
+
+        return redirect()->route("projects.index");
     }
 
     /**
@@ -84,6 +127,11 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Gate::authorize("perform-admin-task", auth()->user());
+
+        $project = Project::find($id);
+        $project->delete();
+
+        return redirect()->route("projects.index");
     }
 }
