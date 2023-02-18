@@ -35,8 +35,8 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item nav-link" href="{{ route("admin.dashboard") }}">Dashboard</a></li>
-                                <li><a class="dropdown-item nav-link" href="{{ route("admin.create-account") }}">Account aanmaken</a></li>
-                                <li><a class="dropdown-item nav-link" href="{{ route("admin.view-accounts") }}">Accountoverzicht</a></li>
+                                <li><a class="dropdown-item nav-link" href="{{ route("admin.accounts.create") }}">Account aanmaken</a></li>
+                                <li><a class="dropdown-item nav-link" href="{{ route("admin.accounts.view-accounts") }}">Accountoverzicht</a></li>
                             </ul>
                         </li>
                     @endif

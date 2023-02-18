@@ -1,45 +1,38 @@
 @extends("layouts.admin")
 
-@section("title", "Account aanmaken")
-
-@section("scripts")
-    <x-validation-scripts></x-validation-scripts>
-@endsection
+@section("title", "Verwijder account")
 
 @section("content")
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form method="POST" action="{{ route("admin.accounts.create.post") }}">
+                <form method="POST" action="{{ route("admin.accounts.delete.post") }}">
                     @csrf
-                    <h1>Account aanmaken</h1>
+                    <input type="hidden" name="id" value="{{ $account->id }}" />
+                    <h1>Account verwijderen</h1>
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
                                 <label class="form-label">Voornaam:</label>
-                                <input class="form-control" type="text" name="firstName" />
+                                <input class="form-control" type="text" value="{{ $account->first_name }}" disabled />
                             </div>
                             <div class="col">
                                 <label class="form-label">Achternaam:</label>
-                                <input class="form-control" type="text" name="surname" />
+                                <input class="form-control" type="text" value="{{ $account->surname }}" disabled />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label required-input">E-mail:</label>
-                        <input class="form-control" type="email" name="email" />
+                        <input class="form-control" type="email" value="{{ $account->email }}" disabled />
                     </div>
                     <div class="form-group">
                         <label class="form-label">Telefoonnummer:</label>
-                        <input class="form-control" type="text" name="phoneNumber" />
+                        <input class="form-control" type="text" value="{{ $account->phone_number }}" disabled />
                     </div>
-                    <div class="form-group">
-                        <label class="form-label required-input">Wachtwoord:</label>
-                        <input class="form-control" type="password" name="password" />
-                    </div>
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fa-solid fa-pen"></i>
-                        Aanmaken
+                    <button class="btn btn-danger" type="submit">
+                        <i class="fa-solid fa-trash"></i>
+                        Verwijderen
                     </button>
                     <a class="btn btn-secondary" href="{{ route("admin.accounts.view-accounts") }}"">
                         Annuleren

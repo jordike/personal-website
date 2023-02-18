@@ -14,12 +14,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col col-lg-6">
-                @if (session()->has("error_message"))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        {{ session("error_message") }}
-                    </div>
-                @endif
+                <x-status-message></x-status-message>
                 <div class="alert alert-warning alert-dismissible">
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     U kunt niet zelf een account aanmaken. Deze worden, indien noodzakelijk, enkel door de beheerder aangemaakt.
@@ -44,7 +39,7 @@
                     <div class="form-group">
                         <div class="checkbox">
                             <input class="form-check-input" name="rememberMe" type="checkbox" value="{{ old("rememberMe") }}" />
-                            <label class="form-label">Onthoud mij</label>
+                            <label class="form-label">Blijf ingelogd</label>
                         </div>
                     </div>
                     <div class="form-group">

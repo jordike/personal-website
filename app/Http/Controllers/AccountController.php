@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class AuthController extends Controller
+class AccountController extends Controller
 {
     public function login(Request $request) {
         $request->validate([
@@ -21,7 +21,7 @@ class AuthController extends Controller
             return redirect()->intended(route("home"));
         }
 
-        session()->flash("error_message", "account.email_or_password_incorrect");
+        session()->flash("error", "account.email_or_password_incorrect");
 
         return redirect()
             ->route("login")
@@ -35,6 +35,10 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route("home");
+    }
+
+    public function profile() {
+        return view("accounts.profile");
     }
 
     public function edit_profile(Request $request) {
