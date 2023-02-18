@@ -35,6 +35,16 @@
                                 <i class="footer-social-media fa-brands fa-linkedin"></i>
                             </a>
                         </div>
+                        <div class="col d-flex justify-content-center">
+                            <a href="https://github.com/jordike" target="_Blank" alt="GitHub">
+                                <i class="footer-social-media fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <a href="https://steamcommunity.com/id/slakje" target="_Blank" alt="Steam">
+                                <i class="footer-social-media fa-brands fa-steam"></i>
+                            </a>
+                        </div>
                     </section>
                 </section>
             </div>
