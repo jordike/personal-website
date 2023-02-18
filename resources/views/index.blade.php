@@ -13,7 +13,7 @@
 
             <div class="function-title">
                 @for ($index = 0; $index < strlen(env("FUNCTION_TITLE")); $index++)
-                    <span class="function-title-character @if ($index % 2 == 0) up @else down @endif">
+                    <span class="function-title-character @if (env("FUNCTION_TITLE")[$index] == " ") function-title-space @elseif ($index % 2 == 0)  function-title-up @else  function-title-down @endif">
                         {{ env("FUNCTION_TITLE")[$index] }}
                     </span>
                 @endfor
