@@ -18,3 +18,5 @@ yarn-error.log
 /.vscode
 /public/css
 package-lock.json
+composer.lock
+/bootstrap/cache
