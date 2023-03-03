@@ -1,0 +1,29 @@
+@import "../Variables";
+
+#admin-offcanvas-toggle {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    border: 2px darken($theme-color, 5%) solid;
+}
+
+.offcanvas {
+    background-color: $black-color !important;
+}
+
+.admin-offcanvas-row {
+    background-color: lighten($black-color, 5%);
+    border-radius: 5px;
+    padding: 10px;
+    transition: background-color 0.5s;
+    border: 1px transparent solid;
+
+    &:hover {
+        background-color: lighten($black-color, 10%);
+        // margin-bottom: -1px !important;
+        border-bottom: 1px $theme-color solid;
+    }
+}

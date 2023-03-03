@@ -11,15 +11,26 @@
     <link rel="stylesheet" href="{{ asset("css/style.css") }}" />
     <link rel="shortcut icon" href="{{ asset("favicon.ico") }}" type="image/x-icon">
     @yield("styles")
+    @auth
+        @if (auth()->user()->isAdministrator())
+            <link rel="stylesheet" href="{{ asset("css/components/AdminOffcanvas.css") }}">
+        @endif
+    @endauth
 
 </head>
 <body>
 
     @include("components.header")
 
-    <main role="main" class="pb-3">
+    <main role="main">
         @yield("content")
     </main>
+
+    @auth
+        @if (auth()->user()->isAdministrator())
+            <x-admin-offcanvas></x-admin-offcanvas>
+        @endif
+    @endauth
 
     @include("components.footer")
 
