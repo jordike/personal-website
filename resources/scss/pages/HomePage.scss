@@ -1,6 +1,10 @@
 ﻿@import "../_GlobalStyle.scss";
 @import "../_Variables.scss";
 
+main {
+    margin-bottom: 0 !important;
+}
+
 .navbar {
     margin-bottom: 0;
 }
@@ -21,18 +25,18 @@
             margin-right: 1px;
             color: $theme-color;
             font-size: 22px;
-        }
 
-        &-up {
-            position: relative;
-            top: -15px;
-            animation: character-move-animation 1s forwards;
-        }
-        
-        &-down {
-            position: relative;
-            top: 15px;
-            animation: character-move-animation 1s forwards;
+            &:nth-child(even) {
+                position: relative;
+                top: -15px;
+                animation: character-move-animation 1s forwards;
+            }
+
+            &:nth-child(odd) {
+                position: relative;
+                top: 15px;
+                animation: character-move-animation 1s forwards;
+            }
         }
     }
 
@@ -51,4 +55,26 @@
 .info-section {
     width: 100%;
     padding: 10px;
+
+    .section-title::after {
+        content: "";
+        width: 200px;
+        height: 2px;
+        position: relative;
+        display: block;
+        background-color: $theme-color;
+        bottom: 0;
+        margin-top: 6px;
+        margin-left: -10px;
+    }
+}
+
+.contact-section {
+    padding: 50px;
+    background-color: #eee;
+    // color: $white-color;
+
+    #contact-button {
+        width: 200px;
+    }
 }

@@ -1,0 +1,34 @@
+﻿@import "../Variables";
+
+.dark-theme {
+    background-color: lighten($lighter-black, 10%);
+    color: white;
+
+    .vertical-line,
+    .circle {
+        background-color: darken($theme-color, 10%);
+    }
+
+    .list-item {
+        &-header {
+            background-color: $lighter-black;
+        }
+
+        &-body {
+            background-color: lighten($lighter-black, 20%);
+
+            &-section-title {
+                color: $theme-color;
+            }
+
+            .function-time {
+                color: darken(white, 30%) !important;
+            }
+        }
+
+        &-footer {
+            background-color: lighten($lighter-black, 15%);
+            color: $theme-color;
+        }
+    }
+}

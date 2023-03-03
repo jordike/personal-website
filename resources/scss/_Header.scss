@@ -9,13 +9,10 @@
     }
 
     .nav-item {
-        border-color: darken($theme-color, 20%);
-        border-width: 0;
+        border-bottom: solid transparent 1px;
 
         &:hover {
             border-bottom: solid $theme-color 1px;
-            // Compensate for the 1px height of the border.
-            margin-bottom: -1px;
         }
 
         .nav-link:hover,
@@ -24,6 +21,10 @@
         #theme-toggle:hover {
             color: darken($white-color, 20%);
         }
+    }
+
+    .active {
+        font-weight: bold;
     }
 
     .nav-link::after {
@@ -43,11 +44,16 @@
     .dropdown-menu {
         background-color: lighten($black-color, 10%);
 
-        .nav-link:hover {
-            color: darken($white-color, 25%);
-            border-bottom: none;
-            margin-bottom: 0;
-            border-left: solid $theme-color 1px;
+        .dropdown-item {
+            border-left: $theme-color solid 0;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: lighten($black-color, 15%);
+            // color: lighten($white-color, 5%);
+            margin-left: -1px;
+            border-left-width: 1px;
         }
     }
 
@@ -101,4 +107,9 @@
     background-color: transparent;
     color: white;
     width: 30px;
+}
+
+.nav-dropdown-toggle {
+    width: 100%;
+    text-align: left;
 }

@@ -3,13 +3,15 @@
 html {
     margin: 0;
     padding: 0;
-
-    position: relative;
-    min-height: 100%;
+    min-height: 100vh;
 
     body {
-        margin-bottom: 60px;
+        min-height: 100vh;
     }
+}
+
+main {
+    margin-bottom: 20px;
 }
 
 .navbar {
@@ -45,16 +47,15 @@ a,
 .form-control {
     border-radius: 0;
     height: 42px;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
     padding: 10px;
     border: none;
     border-bottom: #ced4da 1px solid;
-    /*background-color: #f6f6f6;*/
 
     &:focus {
         background-color: initial !important;
         box-shadow: none !important;
-        border-bottom: $theme-color 1px solid;
+        border-bottom: $theme-color 2px solid;
     }
 }
 
@@ -77,6 +78,6 @@ a,
 }
 
 ::selection {
-    background-color: #ffa50077;
+    background-color: rgba($theme-color, 50%);
     color: white;
 }
