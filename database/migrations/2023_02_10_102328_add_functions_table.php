@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create("experience_functions", function(Blueprint $table) {
             $table->id();
-            $table->foreignId("experience_id")->constrained("experience");
+            $table->foreignId("experience_id")->constrained("experiences")->cascadeOnDelete();
             $table->string("function_title");
             $table->string("description")->nullable();
             $table->date("start_date");
