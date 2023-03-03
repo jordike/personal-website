@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class AccountController extends Controller
 {
@@ -38,10 +40,36 @@ class AccountController extends Controller
     }
 
     public function profile() {
-        return view("accounts.profile");
+        return view("accounts.profile", [
+            "account" => auth()->user()
+        ]);
     }
 
-    public function edit_profile(Request $request) {
+    public function update(Request $request) {
+        $request->validate([
+            "firstName" => "nullable",
+            "surname" => "nullable",
+            "email" => [ "required", "email" ],
+            "phoneNumber" => "nullable",
+            "newPassword" => [ "nullable", Password::default() ],
+            "confirmPassword" => "same:newPassword"
+        ]);
+
+        $user = auth()->user();
+        $user->first_name = $request->firstName;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->phone_number = $request->phoneNumber;
+        $user->name = $user->email;
+
+        if ($request->password != null && $request->confirmPassword != null && $request->password === $request->confirmPassword) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->update();
+
+        session()->flash("success", "account.editted");
+
         return redirect()->refresh();
     }
 }

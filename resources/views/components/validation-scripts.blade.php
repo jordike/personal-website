@@ -1,2 +1,0 @@
-<script src="{{ asset("lib/jquery-validation/dist/jquery.validate.min.js") }}"></script>
-<script src="{{ asset("lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js") }}"></script>
