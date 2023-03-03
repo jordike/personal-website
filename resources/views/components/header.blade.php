@@ -1,7 +1,16 @@
+@php
+    function handleActiveRoute($route) {
+        $isActive = strpos(Route::currentRouteName(), $route) === 0;
+
+        if ($isActive) {
+            return "active";
+        }
+    }
+@endphp
 <header>
     <nav id="#navbar" class="navbar navbar-expand-md navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="{{ route("home") }}">Jordi Keijzers</a>
+            <a class="navbar-brand" href="{{ route("home", [], false) }}">Jordi Keijzers</a>
 
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                 <svg id="navbar-toggler-icon">
@@ -14,52 +23,96 @@
             <div class="navbar-collapse collapse justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("home") }}">Home</a>
+                        <a class="nav-link {{ handleActiveRoute("home") }}" href="{{ route("home", [], false) }}">
+                            {{ __("Home") }}
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("projects.index") }}">Projecten</a>
+                        <a class="nav-link {{ handleActiveRoute("projects.index") }}" href="{{ route("projects.index", [], false) }}">
+                            {{ __("Projecten") }}
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("experience.index") }}">Ervaring</a>
+                        <a class="nav-link {{ handleActiveRoute("experience.index") }}" href="{{ route("experience.index", [], false) }}">
+                            {{ __("Ervaring") }}
+                        </a>
                     </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link {{ handleActiveRoute("cv") }}" href="{{ route("cv") }}">
+                            {{ __("CV") }}
+                        </a>
+                    </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("cv") }}">CV</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route("contact") }}">Contact</a>
+                        <a class="nav-link {{ handleActiveRoute("contact") }}" href="{{ route("contact", [], false) }}">
+                            {{ __("Contact") }}
+                        </a>
                     </li>
                     @if (auth()->check() && auth()->user()->isAdministrator())
                         <li class="dropdown">
-                            <button class="btn btn-link nav-item nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                                Beheer
+                            <button class="btn btn-link nav-item nav-link dropdown-toggle nav-dropdown-toggle" data-bs-toggle="dropdown">
+                                {{ __("Beheer") }}
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-link" href="{{ route("admin.dashboard") }}">Dashboard</a></li>
-                                <li><a class="dropdown-item nav-link" href="{{ route("admin.accounts.create") }}">Account aanmaken</a></li>
-                                <li><a class="dropdown-item nav-link" href="{{ route("admin.accounts.view-accounts") }}">Accountoverzicht</a></li>
+                                <li>
+                                    <a class="dropdown-item nav-link {{ handleActiveRoute("admin.dashboard") }}" href="{{ route("admin.dashboard", [], false) }}">
+                                        {{ __("Dashboard") }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link {{ handleActiveRoute("admin.users.index") }}" href="{{ route("admin.users.index", [], false) }}">
+                                        {{ __("Accountoverzicht") }}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     @endif
                 </ul>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <button id="theme-toggle" class="nav-link" onclick="toggleTheme()">
                             <i id="theme-toggle-icon" class="fa-solid fa-moon"></i>
                         </button>
+                    </li> --}}
+                    <li class="dropdown">
+                        <button class="dropdown-toggle btn btn-link nav-item nav-link nav-dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa-solid fa-language"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">
+                                <a class="nav-link @if (app()->getLocale() == "nl") active @endif" href="{{ route("locale", "nl", false) }}">
+                                    Nederlands
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a class="nav-link @if (app()->getLocale() == "en") active @endif" href="{{ route("locale", "en", false) }}">
+                                    English
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     @auth
                         <li class="dropdown">
-                            <button class="dropdown-toggle btn btn-link nav-item nav-link" data-bs-toggle="dropdown">
+                            <button class="dropdown-toggle btn btn-link nav-item nav-link nav-dropdown-toggle" data-bs-toggle="dropdown">
                                 {{ auth()->user()->name }}
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-link" href="{{ route("profile") }}">Mijn profiel</a></li>
-                                <li><a class="dropdown-item nav-link" href="{{ route("logout") }}">Uitloggen</a></li>
+                                <li>
+                                    <a class="dropdown-item nav-link {{ handleActiveRoute("profile") }}" href="{{ route("profile", [], false) }}">
+                                        {{ __("Mijn profiel") }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link" href="{{ route("logout", [], false) }}">
+                                        {{ __("Uitloggen") }}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route("login") }}">Login</a>
+                            <a class="nav-link {{ handleActiveRoute("login") }}" href="{{ route("login", [], false) }}">
+                                {{ __("Inloggen") }}
+                            </a>
                         </li>
                     @endauth
                 </ul>

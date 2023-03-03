@@ -132,6 +132,8 @@ class ProjectsController extends Controller
         $project = Project::find($id);
         $project->delete();
 
-        return redirect()->route("projects.index");
+        session()->flash("success", "project.deleted");
+
+        return redirect()->back();
     }
 }

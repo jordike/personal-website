@@ -3,31 +3,39 @@
         <div class="row row-cols-1 row-cols-md-2">
             <div class="col d-flex justify-content-center mb-3 mb-lg-0">
                 <section class="footer-section">
-                    <h4>Links</h4>
+                    <h4>{{ __("Links") }}</h4>
                     <hr />
-                    <a class="footer-link" href="{{ route("home") }}">Home</a>
-                    <a class="footer-link" href="{{ route("projects.index") }}">Projecten</a>
-                    <a class="footer-link" href="{{ route("experience.index") }}">Ervaring</a>
-                    <a class="footer-link" href="{{ route("contact") }}">Contact</a>
+                    <a class="footer-link" href="{{ route("home", [], false) }}">
+                        {{ __("Home") }}
+                    </a>
+                    <a class="footer-link" href="{{ route("projects.index", [], false) }}">
+                        {{ __("Projecten") }}
+                    </a>
+                    <a class="footer-link" href="{{ route("experience.index", [], false) }}">
+                        {{ __("Ervaring") }}
+                    </a>
+                    <a class="footer-link" href="{{ route("contact", [], false) }}">
+                        {{ __("Contact") }}
+                    </a>
                 </section>
             </div>
             <div class="col d-flex justify-content-center">
                 <section class="footer-section">
                     <section class="mb-4">
-                        <h4>Contact</h4>
+                        <h4>{{ __("Contact") }}</h4>
                         <hr />
                         <p>
-                            E-mail:
+                            {{ __("E-mail") }}:
                             <a class="contact-info-link" href="mailto:{{ env("EMAIL_ADDRESS") }}">
                                 {{ env("EMAIL_ADDRESS") }}
                             </a>
                         </p>
-                        <p>
-                            Telefoonummer:
+                        {{-- <p>
+                            {{ __("Telefoonummer") }}:
                             <a class="contact-info-link" href="tel:{{ env("PHONE_NUMBER") }}">
                                 {{ env("PHONE_NUMBER") }}
                             </a>
-                        </p>
+                        </p> --}}
                     </section>
                     <section class="row">
                         <div class="col d-flex justify-content-center">
@@ -38,11 +46,6 @@
                         <div class="col d-flex justify-content-center">
                             <a href="https://github.com/jordike" target="_Blank" alt="GitHub">
                                 <i class="footer-social-media fa-brands fa-github"></i>
-                            </a>
-                        </div>
-                        <div class="col d-flex justify-content-center">
-                            <a href="https://steamcommunity.com/id/slakje" target="_Blank" alt="Steam">
-                                <i class="footer-social-media fa-brands fa-steam"></i>
                             </a>
                         </div>
                     </section>
