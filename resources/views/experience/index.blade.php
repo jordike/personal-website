@@ -1,9 +1,77 @@
 @extends("layouts.main")
 
-@section("title", "Ervaring")
+@section("title", __("Ervaring"))
+
+@section("styles")
+    <link rel="stylesheet" href="{{ asset("css/components/ListComponent.css") }}" />
+@endsection
 
 @section("content")
-    <div class="container">
-        <h1>Ervaring</h1>
+    <div class="row justify-content-center w-100">
+        <div class="col-md-6">
+            <div class="container">
+                <h1 class="mb-3">{{ __("Ervaring") }}</h1>
+
+                @if (count($experiences) == 0)
+                    <span>{{ __("Er is geen ervaring opgeslagen in de database.") }}</span>
+                @else
+                    @foreach ($experiences as $experience)
+                        <div class="row">
+                            <div class="col-1 d-none d-md-block">
+                                <span class="vertical-line"></span>
+                                <span class="circle">
+                                    <span class="inner-circle"></span>
+                                </span>
+                            </div>
+                            <div class="col-11">
+                                <div class="container">
+                                    <div class="list-item">
+                                        <div class="list-item-header">
+                                            <a href="#{{ Str::slug($experience->company_name) }}" id="{{ Str::slug($experience->company_name) }}">
+                                                <h5 class="list-item-title">
+                                                    {{ $experience->company_name }}
+                                                </h5>
+                                            </a>
+                                        </div>
+                                        <div class="list-item-body">
+                                            <div class="functions">
+                                                @foreach ($experience->functions as $function)
+                                                    <div class="function">
+                                                        <h6 class="list-item-body-section-title no-margin">
+                                                            {{ $function->function_title }}
+                                                        </h6>
+                                                        <span class="function-time text-muted d-block mb-1">
+                                                            {{ \App\Http\Controllers\ExperienceController::formatDate($function->start_date) }}
+                                                            {{ __("t/m") }}
+                                                            @if ($function->end_date != null)
+                                                                {{ \App\Http\Controllers\ExperienceController::formatDate($function->end_date) }}
+                                                            @else
+                                                                {{ __("heden") }}
+                                                            @endif
+                                                            {{-- ({{ \App\Http\Controllers\ExperienceController::calculateElapsedTime($function->start_date, $function->end_date) }}) --}}
+                                                        </span>
+                                                        <span class="function-description">
+                                                            {{ $function->description }}
+                                                        </span>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="list-item-footer">
+                                            @if ($experience->company_website != null)
+                                                <a href="{{ $experience->company_website }}" target="_blank">
+                                                    <i class="fa-solid fa-earth"></i>
+                                                    {{ __("Website") }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
     </div>
 @endsection
