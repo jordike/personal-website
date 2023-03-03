@@ -1,6 +1,6 @@
-@extends("layouts.admin")
+@extends("layouts.main")
 
-@section("title", "Accountoverzicht")
+@section("title", __("Accountoverzicht"))
 
 @section("styles")
     <link rel="stylesheet" href="{{ asset("lib/datatables/datatables.css") }}" />
@@ -15,22 +15,22 @@
 @section("content")
     <div class="container">
         <h1 class="mb-2">
-            <span class="me-3">Accountoverzicht</span>
-            <a class="btn btn-primary" href="{{ route("admin.accounts.create") }}">
+            <span class="me-3">{{ __("Accountoverzicht") }}</span>
+            <a class="btn btn-primary rounded-pill" href="{{ route("admin.users.create", [], false) }}">
                 <i class="fa-solid fa-plus"></i>
-                Account aanmaken
+                {{-- {{ __("Account aanmaken") }} --}}
             </a>
         </h1>
         <table class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Voornaam</th>
-                    <th>Achternaam</th>
-                    <th>E-mail</th>
-                    <th>Telefoonnummer</th>
-                    <th>Aangemaakt</th>
-                    <th>Laatst bewerkt</th>
+                    <th>{{ __("ID") }}</th>
+                    <th>{{ __("Voornaam") }}</th>
+                    <th>{{ __("Achternaam") }}</th>
+                    <th>{{ __("E-mail") }}</th>
+                    <th>{{ __("Telefoonnummer") }}</th>
+                    <th>{{ __("Aangemaakt") }}</th>
+                    <th>{{ __("Laatst bewerkt") }}</th>
                     <td class="no-sort"></td>
                     <td class="no-sort"></td>
                 </tr>
@@ -47,7 +47,7 @@
                         <td>{{ $account->updated_at }}</td>
                         <td class="d-flex justify-content-center">
                             <div class="d-flex justify-content-center">
-                                <a class="btn btn-secondary" type="button" href="{{ route("admin.accounts.edit", [ "user" => $account ]) }}">
+                                <a class="btn btn-secondary" type="button" href="{{ route("admin.users.edit", $account, false) }}">
                                     <i class="fa-solid fa-ellipsis"></i>
                                 </a>
                             </div>
@@ -55,9 +55,13 @@
                         <td>
                             @if (auth()->user()->id != $account->id)
                                 <div class="d-flex justify-content-center">
-                                    <a class="btn btn-danger" type="button" href="{{ route("admin.accounts.delete", [ "user" => $account ]) }}">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    <form method="POST" action="{{ route("admin.users.destroy", $account, false) }}">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button class="btn btn-danger" type="submit">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             @endif
                         </td>
