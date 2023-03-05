@@ -1,14 +1,18 @@
 {
     "private": true,
     "scripts": {
-        "dev": "vite",
-        "build": "vite build"
+        "prebuild": "sass resources/scss/Style.scss:resources/css/style.css resources/scss/pages:resources/css/pages resources/scss/components:resources/css/components --style=compressed --no-source-map",
+        "build": "npx mix --production"
     },
     "devDependencies": {
         "axios": "^1.1.2",
+        "laravel-mix": "^6.0.49",
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.58.3",
+        "sass-loader": "^12.1.0",
         "vite": "^4.0.0"
     }
 }

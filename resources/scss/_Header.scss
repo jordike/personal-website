@@ -45,15 +45,15 @@
         background-color: lighten($black-color, 10%);
 
         .dropdown-item {
-            border-left: $theme-color solid 0;
-            transition: background-color 0.2s;
+            // margin-left: 1px;
+            border-left: 1px solid transparent;
+            // transition: background-color 0.2s;
         }
 
         .dropdown-item:hover {
             background-color: lighten($black-color, 15%);
             // color: lighten($white-color, 5%);
-            margin-left: -1px;
-            border-left-width: 1px;
+            border-left: 1px solid $theme-color;
         }
     }
 

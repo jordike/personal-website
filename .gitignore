@@ -17,6 +17,9 @@ yarn-error.log
 /.idea
 /.vscode
 /public/css
+/public/js
+/resources/css
 package-lock.json
 composer.lock
 /bootstrap/cache
+/public/mix-manifest.json

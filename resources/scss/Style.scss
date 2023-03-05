@@ -2,7 +2,7 @@
 
 $primary: $theme-color;
 
-@import "lib/bootstrap/bootstrap.scss";
+@import "../../public/lib/bootstrap/scss/bootstrap.scss";
 @import "themes/_DarkTheme.scss";
 @import "_GlobalStyle.scss";
 
