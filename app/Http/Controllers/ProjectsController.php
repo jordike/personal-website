@@ -70,7 +70,7 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route("projects.index");
+        return redirect()->intended(route("projects.index"), 301);
     }
 
     /**

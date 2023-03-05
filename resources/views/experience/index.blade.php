@@ -41,14 +41,14 @@
                                                             {{ $function->function_title }}
                                                         </h6>
                                                         <span class="function-time text-muted d-block mb-1">
-                                                            {{ \App\Http\Controllers\ExperienceController::formatDate($function->start_date) }}
+                                                            {{ $function->formatDate($function->start_date) }}
                                                             {{ __("t/m") }}
                                                             @if ($function->end_date != null)
-                                                                {{ \App\Http\Controllers\ExperienceController::formatDate($function->end_date) }}
+                                                                {{ $function->formatDate($function->end_date) }}
                                                             @else
                                                                 {{ __("heden") }}
                                                             @endif
-                                                            {{-- ({{ \App\Http\Controllers\ExperienceController::calculateElapsedTime($function->start_date, $function->end_date) }}) --}}
+                                                            <small class="ms-1 text-muted">({{ $function->formatElapsedTime() }})</small>
                                                         </span>
                                                         <span class="function-description">
                                                             {{ $function->description }}

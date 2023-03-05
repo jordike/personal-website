@@ -9,7 +9,8 @@ use Illuminate\Validation\Rules\Password;
 
 class AccountController extends Controller
 {
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $request->validate([
             "email" => "email|required",
             "password" => "required"
@@ -17,8 +18,6 @@ class AccountController extends Controller
 
         if (Auth::attempt(["email" => $request->email, "password" => $request->password], $request->rememberMe)) {
             $request->session()->regenerate();
-
-            session()->flash("message", "account.logged_in");
 
             return redirect()->intended(route("home"));
         }
@@ -30,7 +29,8 @@ class AccountController extends Controller
             ->withInput($request->all());
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         auth()->logout();
 
         $request->session()->invalidate();
@@ -39,13 +39,15 @@ class AccountController extends Controller
         return redirect()->route("home");
     }
 
-    public function profile() {
+    public function profile()
+    {
         return view("accounts.profile", [
             "account" => auth()->user()
         ]);
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         $request->validate([
             "firstName" => "nullable",
             "surname" => "nullable",

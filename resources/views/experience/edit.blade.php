@@ -8,10 +8,8 @@
 
 @section("scripts")
     <script src="{{ asset("js/pages/experience.js") }}"></script>
-    <script>
-        window.addEventListener("load", () => {
-            loadFunctions(@json($experience->functions));
-        });
+    <script defer>
+        loadFunctions(@json($experience->functions));
     </script>
 @endsection
 

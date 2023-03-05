@@ -11,7 +11,8 @@ use Illuminate\Validation\Rules\Password;
 
 class AdminController extends Controller
 {
-    public function dashboard() {
+    public function dashboard()
+    {
         $experiences = Experience::all();
         $projects = Project::all();
 
