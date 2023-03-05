@@ -81,7 +81,7 @@ class ExperienceController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route("experience.index");
+        return redirect()->intended(route("home"), 301);
     }
 
     /**
@@ -153,86 +153,4 @@ class ExperienceController extends Controller
 
         return redirect()->back();
     }
-
-    public static function formatDate($date)
-    {
-        $dateObject = date_create($date);
-        $month = strtolower(__("months." . $dateObject->format("m")));
-        $year = $dateObject->format("Y");
-
-        return "$month $year";
-    }
-
-    public static function calculateElapsedTime($startDate, $endDate = null)
-    {
-        if ($endDate == null)
-        {
-            $endDate = now();
-        }
-
-        $startDate = Carbon::create($startDate);
-        $endDate = Carbon::create($endDate);
-
-
-        $rawMonths = (($endDate->year - $startDate->year) * 12) + $endDate->month - $startDate->month;
-
-        $months = $rawMonths % 12;
-        $years = $rawMonths / 12;
-        // $days = ($endDate - $startDate);
-
-        return [
-            $months,
-            $years,
-            // $days
-        ];
-    }
-
-    // private string FormatElapsedTime(DateTime startDate, DateTime? endDate)
-    // {
-    //     var elapsedTime = CalculateElapsedTime(startDate, endDate);
-    //     var months = elapsedTime.Item1;
-    //     var years = elapsedTime.Item2;
-    //     var days = Math.Max(elapsedTime.Item3, 1);
-
-    //     var text = "";
-
-    //     if (months <= 0 && years <= 0)
-    //     {
-    //         text += days;
-
-    //         if (days == 1)
-    //         {
-    //             text += " dag";
-    //         }
-    //         else
-    //         {
-    //             text += "dagen";
-    //         }
-    //     }
-
-    //     if (years > 0)
-    //     {
-    //         text += $"{years} jaar";
-    //     }
-
-    //     if (months > 0 && years > 0)
-    //     {
-    //         text += " en ";
-    //     }
-
-    //     if (months > 0)
-    //     {
-    //         text += $"{months} ";
-
-    //         if (months == 1)
-    //         {
-    //             text += "maand";
-    //         }
-    //         else
-    //         {
-    //             text += "maanden";
-    //         }
-    //     }
-    //     return text;
-    // }
 }
