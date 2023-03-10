@@ -8,7 +8,7 @@
 
 @section("content")
     <div class="row justify-content-center w-100">
-        <div class="col-md-6">
+        <div class="col-md-10 col-lg-8 col-xl-6">
             <div class="container">
                 <h1 class="mb-3">{{ __("Ervaring") }}</h1>
 
@@ -23,7 +23,7 @@
                                     <span class="inner-circle"></span>
                                 </span>
                             </div>
-                            <div class="col-11">
+                            <div class="col-12 col-md-11">
                                 <div class="container">
                                     <div class="list-item">
                                         <div class="list-item-header">
