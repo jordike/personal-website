@@ -38,6 +38,14 @@ a,
     color: darken($theme-color, 10%);
 }
 
+.link {
+    border-bottom: 1px dashed $theme-color;
+
+    &:hover {
+        border-bottom-style: solid;
+    }
+}
+
 .required-input::after {
     content: "*";
     color: red;
