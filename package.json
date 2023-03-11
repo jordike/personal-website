@@ -2,7 +2,9 @@
     "private": true,
     "scripts": {
         "prebuild": "sass resources/scss/Style.scss:resources/css/style.css resources/scss/pages:resources/css/pages resources/scss/components:resources/css/components --style=compressed --no-source-map",
-        "build": "npx mix --production"
+        "build": "npx mix --production",
+        "watch-sass": "sass --watch resources/scss/Style.scss:resources/css/style.css resources/scss/pages:resources/css/pages resources/scss/components:resources/css/components --style=compressed --no-source-map",
+        "watch-mix": "npx mix watch"
     },
     "devDependencies": {
         "axios": "^1.1.2",
