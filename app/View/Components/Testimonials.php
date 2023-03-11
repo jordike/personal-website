@@ -2,12 +2,10 @@
 
 namespace App\View\Components;
 
-use App\Models\Experience;
-use App\Models\Project;
 use App\Models\Testimonial;
 use Illuminate\View\Component;
 
-class AdminOffcanvas extends Component
+class Testimonials extends Component
 {
     /**
      * Get the view / contents that represent the component.
@@ -16,13 +14,9 @@ class AdminOffcanvas extends Component
      */
     public function render()
     {
-        $projects = Project::all();
-        $experiences = Experience::all();
         $testimonials = Testimonial::all();
 
-        return view("components.admin-offcanvas", [
-            "projects" => $projects,
-            "experiences" => $experiences,
+        return view('components.testimonials', [
             "testimonials" => $testimonials
         ]);
     }

@@ -20,5 +20,10 @@
                 <x-admin.offcanvas-row id="experience" :item="$experience" :name="$experience->company_name"></x-admin.offcanvas-row>
             @endforeach
         </x-admin.offcanvas-section>
+        <x-admin.offcanvas-section id="testimonials" title="Testimonials">
+            @foreach ($testimonials as $testimonial)
+                <x-admin.offcanvas-row id="testimonials" :item="$testimonial" :name="$testimonial->reviewer_name"></x-admin.offcanvas-row>
+            @endforeach
+        </x-admin.offcanvas-section>
     </div>
 </div>
