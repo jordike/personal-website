@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Notifications\ContactNotification;
 use Illuminate\Http\Request;
 
@@ -22,12 +23,12 @@ class ContactController extends Controller
         ]);
 
         if (auth()->check()) {
-            $user = auth()->user();
+            $user = User::where("email", env("ADMIN_EMAIL"));
             $user->notify(new ContactNotification($request->name, $request->email, $request->subject, $request->body));
         }
 
         return redirect()
             ->route("contact")
-            ->with("message", "Email sent");
+            ->with("success", "email.email_sent");
     }
 }

@@ -3,7 +3,6 @@
 html {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
 
     body {
         min-height: 100vh;
@@ -59,6 +58,7 @@ a,
     padding: 10px;
     border: none;
     border-bottom: #ced4da 1px solid;
+    background-color: transparent !important;
 
     &:focus {
         background-color: initial !important;
