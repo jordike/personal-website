@@ -38,7 +38,7 @@
                     <div class="functions">
                         <h2>
                             {{ __("Functie(s)") }}
-                            <button class="btn btn-primary" type="button" onclick="addNewFunction()">
+                            <button class="btn btn-primary rounded-pill" type="button" onclick="addNewFunction()">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </h2>
