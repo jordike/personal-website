@@ -151,6 +151,6 @@ class ExperienceController extends Controller
         $experience = Experience::find($id);
         $experience->delete();
 
-        return redirect()->back();
+        return redirect()->route("experience.index");
     }
 }

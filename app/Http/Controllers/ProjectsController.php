@@ -134,6 +134,6 @@ class ProjectsController extends Controller
 
         session()->flash("success", "project.deleted");
 
-        return redirect()->back();
+        return redirect()->route("projects.index");
     }
 }
