@@ -20,7 +20,7 @@
                     @csrf
                     <div class="form-group">
                         <label class="form-label">{{ __("E-mail") }}:</label>
-                        <input class="form-control" type="email" name="email" autocomplete="username" value="{{ old("username") }}" />
+                        <input class="form-control" type="email" name="email" autocomplete="username" value="{{ old("email") }}" />
                         @error("email")
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -34,8 +34,8 @@
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
-                            <input class="form-check-input" name="rememberMe" type="checkbox" value="{{ old("rememberMe") }}" />
-                            <label class="form-label">{{ __("Ingelogd blijven") }}</label>
+                            <input id="rememberMe" class="form-check-input" name="rememberMe" type="checkbox" />
+                            <label class="form-label" for="rememberMe">{{ __("Ingelogd blijven") }}</label>
                         </div>
                     </div>
                     <div class="form-group">
