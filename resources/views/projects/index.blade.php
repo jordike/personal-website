@@ -70,7 +70,7 @@
                                         <div class="list-item-footer">
                                             @if ($project->links != null)
                                                 @foreach (explode(",", $project->links) as $link)
-                                                    <a href="{{ $link }}" target="_blank">
+                                                    <a class="me-2" href="{{ $link }}" target="_blank">
                                                         <i class="fa-solid fa-earth"></i>
                                                         {{ $link }}
                                                     </a>
