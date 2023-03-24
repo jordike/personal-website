@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Experience;
 use App\Models\ExperienceFunction;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
 
 class ExperienceController extends Controller
 {
@@ -45,32 +44,8 @@ class ExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize("perform-admin-task", auth()->user());
-
-        $request->validate([
-            "companyName" => "required",
-            "functions.*.id" => "required",
-            "functions.*.function_title" => "required",
-            "functions.*.start_date" => [ "required", "date" ],
-            "functions.*.end_date" => [ "nullable", "date" ]
-        ]);
-
-        $experience = new Experience;
-        $experience->company_name = $request->companyName;
-        $experience->company_website = $request->companyWebsite;
-        $experience->save();
-
-        foreach ($request->functions as $requestFunction) {
-            $function = new ExperienceFunction;
-            $function->experience_id = $experience->id;
-            $function->function_title = $requestFunction["function_title"];
-            $function->description = $requestFunction["description"];
-            $function->start_date = $requestFunction["start_date"];
-            $function->end_date = $requestFunction["end_date"];
-            $function->save();
-        }
-
-        return redirect()->route("experience.index");
+        // This is handled in the Livewire component.
+        return redirect()->route("experience.index", [], 301);
     }
 
     /**
@@ -110,32 +85,8 @@ class ExperienceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize("perform-admin-task", auth()->user());
-
-        $request->validate([
-            "companyName" => "required",
-            "functions.*.id" => "required",
-            "functions.*.function_title" => "required",
-            "functions.*.start_date" => [ "required", "date" ],
-            "functions.*.end_date" => [ "nullable", "date" ]
-        ]);
-
-        $experience = Experience::find($id);
-        $experience->company_name = $request->companyName;
-        $experience->company_website = $request->companyWebsite;
-        $experience->update();
-
-        foreach ($request->functions as $requestFunction) {
-            $function = ExperienceFunction::find($requestFunction["id"]);
-            $function->experience_id = $experience->id;
-            $function->function_title = $requestFunction["function_title"];
-            $function->description = $requestFunction["description"];
-            $function->start_date = $requestFunction["start_date"];
-            $function->end_date = $requestFunction["end_date"];
-            $function->update();
-        }
-
-        return redirect()->route("experience.index");
+        // This is handled in the Livewire component.
+        return redirect()->route("experience.index", [], 301);
     }
 
     /**

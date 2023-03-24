@@ -10,6 +10,14 @@ class ExperienceFunction extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "experience_id",
+        "function_title",
+        "description",
+        "start_date",
+        "end_date"
+    ];
+
     public function formatDate($date)
     {
         $dateObject = date_create($date);
