@@ -11,8 +11,7 @@
     <div class="row justify-content-center w-100">
         <div class="col-12 col-lg-8 col-xl-6">
             <div class="container">
-                <h1 class="mb-3">{{ __("Projecten") }}</h1>
-
+                <h1 class="mb-3 text-center text-sm-start">{{ __("Projecten") }}</h1>
                 @if (count($projects) == 0)
                     <span>{{ __("Er zijn geen projecten opgeslagen in de database.") }}</span>
                 @else
@@ -70,7 +69,7 @@
                                         <div class="list-item-footer">
                                             @if ($project->links != null)
                                                 @foreach (explode(",", $project->links) as $link)
-                                                    <a class="me-2" href="{{ $link }}" target="_blank">
+                                                    <a class="me-2 d-block d-sm-inline mb-1 mb-sm-0" href="{{ $link }}" target="_blank">
                                                         <i class="fa-solid fa-earth"></i>
                                                         {{ $link }}
                                                     </a>
