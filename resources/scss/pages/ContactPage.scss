@@ -1,4 +1,4 @@
-@import "../Variables";
+@import "../Style";
 
 #contact-form {
     // background-color: #f4f4f4e2;
@@ -10,7 +10,7 @@
     padding: 5px;
     padding-left: 15px;
     margin-bottom: 15px;
-    border-left: 2px transparent solid;
+    border-left: 2px #f0f0f0 solid;
     transition: border-left 0.3s;
 
     &-title {
@@ -28,5 +28,11 @@
 
     &:hover {
         border-left: 2px $theme-color solid;
+    }
+}
+
+@include media-breakpoint-down(md) {
+    #contactMethods {
+        flex-direction: column-reverse;
     }
 }

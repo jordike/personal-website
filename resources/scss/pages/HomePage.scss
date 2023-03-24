@@ -89,7 +89,7 @@ main {
 }
 
 #portrait {
-    background-image: url("/img/portrait.png");
+    background-image: url("/img/jordi.png");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -109,13 +109,14 @@ main {
 }
 
 .testimonial {
-    margin: 10px;
-    border-radius: 10px;
-    transition: 0.25s;
+    // margin: 10px;
+    padding: 10px;
+    transition: transform 0.25s;
 
     .testimonial-body {
         display: flex;
         flex-direction: column;
+        border-radius: 10px;
         height: 100%;
         padding: 20px;
 
@@ -145,6 +146,5 @@ main {
 
     &:hover {
         transform: translateY(-5px);
-        // box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
     }
 }

@@ -19,7 +19,7 @@
                 <h1>
                     {{ __("Contact") }}
                 </h1>
-                <div class="row justify-content-center">
+                <div id="contactMethods" class="row justify-content-center">
                     <div class="col-12 col-md">
                         <div id="contact-form">
                             <form method="POST" action="{{ route("contact.send", [], false) }}">
@@ -61,7 +61,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 mt-3 mt-md-0">
                         <div class="ms-md-3 row">
                             <div class="col-12">
                                 <div class="contact-option">

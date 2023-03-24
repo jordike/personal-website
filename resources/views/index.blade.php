@@ -12,9 +12,22 @@
             <h1 id="name">Jordi Keijzers</h1>
 
             <div class="function-title">
+                @php($opened = false)
                 @for ($index = 0; $index < strlen(env("FUNCTION_TITLE")); $index++)
-                    <span class="function-title-character">{{ trim(env("FUNCTION_TITLE")[$index]) }}</span>
+                    @if (!$opened)
+                        @php($opened = true)
+                        <span class="d-block d-sm-inline">
+                    @endif
+                    @php($character = trim(env("FUNCTION_TITLE")[$index]))
+                    @if (empty($character) && $opened)
+                        @php($opened = false)
+                        </span>
+                    @endif
+                    <span class="function-title-character @if (empty($character)) d-none d-sm-inline @endif">{{ $character }}</span>
                 @endfor
+                @if ($opened)
+                    </span>
+                @endif
             </div>
         </div>
     </section>
