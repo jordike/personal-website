@@ -113,7 +113,7 @@ class ExperienceForm extends Component
         $this->experienceId = $id;
         $this->method = $method;
         $this->disabled = $disabled;
-        $this->activeAccordion = 0;
+        $this->activeAccordion = -1;
         $this->title = $title;
 
         $this->functions = ExperienceFunction::where("experience_id", "=", $this->experienceId)
@@ -121,8 +121,11 @@ class ExperienceForm extends Component
             ->toArray();
 
         $company = Experience::find($this->experienceId);
-        $this->companyName = $company->company_name;
-        $this->companyWebsite = $company->company_website;
+
+        if ($company != null) {
+            $this->companyName = $company->company_name;
+            $this->companyWebsite = $company->company_website;
+        }
 
         if (count($this->functions) == 0) {
             $this->addFunction();

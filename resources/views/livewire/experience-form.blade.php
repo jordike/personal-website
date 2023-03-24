@@ -26,7 +26,6 @@
 <form wire:submit.prevent="submitForm">
     @csrf
     @method($method)
-    Session: {{ var_dump(session()->get("experiences")) }}
     <h1>{{ __("Ervaring") . " " . strtolower($title) }}</h1>
     <div class="form-group">
         <label class="form-label requiraed-input">{{ __("Bedrijfsnaam") }}:</label>
