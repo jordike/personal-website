@@ -1,7 +1,7 @@
 <div id="testimonials" class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 justify-content-center">
     @foreach ($testimonials as $testimonial)
-        <div class="col testimonial shadow-sm">
-            <div class="testimonial-body">
+        <div class="col testimonial">
+            <div class="testimonial-body shadow-sm">
                 <div class="testimonial-header">
                     <i class="fa-solid fa-quote-left testimonial-quote"></i>
                 </div>
