@@ -7,10 +7,10 @@
 @endsection
 
 @section("content")
-    @include("components.status-message")
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @include("components.status-message")
                 <h1>
                     {{ __("pages/contact.title") }}
                 </h1>
