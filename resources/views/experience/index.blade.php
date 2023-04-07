@@ -1,6 +1,6 @@
 @extends("layouts.main")
 
-@section("title", __("Ervaring"))
+@section("title", __("pages/experience/index.title"))
 
 @section("styles")
     <link rel="stylesheet" href="{{ asset("css/components/ListComponent.css") }}" />
@@ -10,10 +10,10 @@
     <div class="row justify-content-center w-100">
         <div class="col-md-10 col-lg-8 col-xl-6">
             <div class="container">
-                <h1 class="mb-3">{{ __("Ervaring") }}</h1>
+                <h1 class="mb-3">{{ __("pages/experience/index.title") }}</h1>
 
                 @if (count($experiences) == 0)
-                    <span>{{ __("Er is geen ervaring opgeslagen in de database.") }}</span>
+                    <span>{{ __("pages/experience/index.no-experience") }}</span>
                 @else
                     @foreach ($experiences as $experience)
                         <div class="row">
@@ -42,11 +42,11 @@
                                                         </h6>
                                                         <span class="function-time text-muted d-block mb-1">
                                                             {{ $function->formatDate($function->start_date) }}
-                                                            {{ __("t/m") }}
+                                                            {{ __("time.up-to-including") }}
                                                             @if ($function->end_date != null)
                                                                 {{ $function->formatDate($function->end_date) }}
                                                             @else
-                                                                {{ __("heden") }}
+                                                                {{ __("time.present") }}
                                                             @endif
                                                             <small class="ms-1 text-muted">({{ $function->formatElapsedTime() }})</small>
                                                         </span>
@@ -61,7 +61,7 @@
                                             @if ($experience->company_website != null)
                                                 <a href="{{ $experience->company_website }}" target="_blank">
                                                     <i class="fa-solid fa-earth"></i>
-                                                    {{ __("Website") }}
+                                                    {{ __("pages/experience/index.website") }}
                                                 </a>
                                             @endif
                                         </div>

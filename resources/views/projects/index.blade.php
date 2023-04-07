@@ -1,6 +1,6 @@
 @extends("layouts.main")
 
-@section("title", __("Projecten"))
+@section("title", __("pages/projects/index.title"))
 
 @section("styles")
     <link rel="stylesheet" href="{{ asset("css/components/ListComponent.css") }}" />
@@ -11,10 +11,9 @@
     <div class="row justify-content-center w-100">
         <div class="col-12 col-lg-8 col-xl-6">
             <div class="container">
-                <h1 class="mb-3">{{ __("Projecten") }}</h1>
-
+                <h1 class="mb-3 text-center text-sm-start">{{ __("pages/projects/index.title") }}</h1>
                 @if (count($projects) == 0)
-                    <span>{{ __("Er zijn geen projecten opgeslagen in de database.") }}</span>
+                    <span>{{ __("pages/projects/index.no-projects") }}</span>
                 @else
                     @foreach ($projects as $project)
                         <div class="row">
@@ -43,7 +42,7 @@
                                                     @if ($project->programming_languages != null)
                                                         <div class="mb-3">
                                                             <h6 class="list-item-body-section-title">
-                                                                {{ __("Programmeertalen") }}
+                                                                {{ __("pages/projects/index.programming-languages") }}
                                                             </h6>
                                                             @foreach (explode(",", $project->programming_languages) as $programmingLanguage)
                                                                 <div class="badge bg-secondary">
@@ -55,7 +54,7 @@
                                                     @if ($project->tools != null)
                                                         <div class="mb-3">
                                                             <h6 class="list-item-body-section-title">
-                                                                {{ __("Hulpmiddelen") }}
+                                                                {{ __("pages/projects/index.tools") }}
                                                             </h6>
                                                             @foreach (explode(",", $project->tools) as $tool)
                                                                 <div class="badge bg-secondary">
@@ -70,7 +69,7 @@
                                         <div class="list-item-footer">
                                             @if ($project->links != null)
                                                 @foreach (explode(",", $project->links) as $link)
-                                                    <a href="{{ $link }}" target="_blank">
+                                                    <a class="me-2 d-block d-sm-inline mb-1 mb-sm-0" href="{{ $link }}" target="_blank">
                                                         <i class="fa-solid fa-earth"></i>
                                                         {{ $link }}
                                                     </a>

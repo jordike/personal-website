@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules\Password;
 
 class UsersController extends Controller
 {
@@ -31,6 +33,8 @@ class UsersController extends Controller
      */
     public function create()
     {
+        Gate::authorize("perform-admin-task", auth()->user());
+
         return view("admin.users.create");
     }
 
@@ -42,6 +46,8 @@ class UsersController extends Controller
      */
     public function store(Request $request, User $user)
     {
+        Gate::authorize("perform-admin-task", auth()->user());
+
         $request->validate([
             "email" => [ "email", "unique:users", "required" ],
             "password" => [ "min:4", "required" ]
@@ -54,11 +60,14 @@ class UsersController extends Controller
         $account->first_name = $request->firstName;
         $account->surname = $request->surname;
         $account->phone_number = $request->phoneNumber;
+        $account->administrator = $request->administrator == true;
         $account->save();
+
+        event(new Registered($account));
 
         return redirect()
             ->refresh()
-            ->with("message", "account.created");
+            ->with("message", __("status-messages/users.user.created"));
     }
 
     /**
@@ -69,7 +78,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect()->back(301);
     }
 
     /**
@@ -80,6 +89,8 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        Gate::authorize("perform-admin-task", auth()->user());
+
         return view("admin.users.edit", [
             "account" => $user
         ]);
@@ -94,6 +105,8 @@ class UsersController extends Controller
      */
     public function update(User $user, Request $request)
     {
+        Gate::authorize("perform-admin-task", auth()->user());
+
         $request->validate([
             "id" => "required",
             "email" => [ "email", "required" ],
@@ -107,16 +120,17 @@ class UsersController extends Controller
         $user->first_name = $request->firstName;
         $user->surname = $request->surname;
         $user->phone_number = $request->phoneNumber;
+        $user->administrator = $request->administrator == true;
 
-        if ($request->has("password") && $request->has("confirmPassword") && $request->password === $request->confirmPassword) {
+        if ($request->password != null && $request->confirmPassword != null && $request->password === $request->confirmPassword) {
             $user->password = Hash::make($request->password);
         }
 
         $user->update();
 
-        session()->flash("message", "admin.account-editted");
-
-        return redirect()->route("admin.users.index");
+        return redirect()
+            ->route("admin.users.index")
+            ->with("success", __("status-messages/users.user.edited"));
     }
 
     /**
@@ -127,10 +141,13 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+        Gate::authorize("perform-admin-task", auth()->user());
+
+        $user->notifications()->delete();
         $user->delete();
 
-        session()->flash("message", "admin.accounts.deleted");
-
-        return redirect()->route("admin.users.index");
+        return redirect()
+            ->route("admin.users.index")
+            ->with("success", __("status-messages/users.user.deleted"));
     }
 }

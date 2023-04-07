@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,7 @@ class AccountController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            "email" => "email|required",
+            "email" => [ "required", "email" ],
             "password" => "required"
         ]);
 
@@ -22,10 +23,9 @@ class AccountController extends Controller
             return redirect()->intended(route("home"));
         }
 
-        session()->flash("error", "account.email_or_password_incorrect");
-
         return redirect()
             ->route("login")
+            ->with("error", __("status-messages/account.auth.email_or_password_incorrect"))
             ->withInput($request->all());
     }
 
@@ -70,8 +70,26 @@ class AccountController extends Controller
 
         $user->update();
 
-        session()->flash("success", "account.editted");
+        return redirect()
+            ->refresh()
+            ->with("success", __("status-messages/account.account.edited"));
+    }
 
-        return redirect()->refresh();
+    public function resendVerifyEmail()
+    {
+        auth()->user()->SendEmailVerificationNotification();
+
+        return redirect()
+            ->back()
+            ->with("success", __("status-messages/account.email.mail-sent"));
+    }
+
+    public function verifyEmail(EmailVerificationRequest $request)
+    {
+        $request->fulfill();
+
+        return redirect()
+            ->route("profile")
+            ->with("success", __("status-messages/account.mail.verified"));
     }
 }

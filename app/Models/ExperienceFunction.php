@@ -10,10 +10,18 @@ class ExperienceFunction extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "experience_id",
+        "function_title",
+        "description",
+        "start_date",
+        "end_date"
+    ];
+
     public function formatDate($date)
     {
         $dateObject = date_create($date);
-        $month = strtolower(__("months." . $dateObject->format("m")));
+        $month = strtolower(__("time.months." . $dateObject->format("m")));
         $year = $dateObject->format("Y");
 
         return "$month $year";
@@ -33,6 +41,7 @@ class ExperienceFunction extends Model
         return $startDate->diff($endDate);
     }
 
+    // TODO: Refactor this code
     public function formatElapsedTime()
     {
         $elapsedTime = $this->calculateElapsedTime();
@@ -43,29 +52,36 @@ class ExperienceFunction extends Model
             $text .= $elapsedTime->d;
 
             if ($elapsedTime->d == 1) {
-                $text .= " dag";
+                $text .= " " . __("time.units.days.singular");
             } else {
-                $text .= " dagen";
+                $text .= " " . __("time.units.days.plural");
             }
         }
 
         if ($elapsedTime->y > 0) {
-            $text .= $elapsedTime->y . " jaar";
+            $text .= $elapsedTime->y . " ";
+
+            if ($elapsedTime->y == 1) {
+                $text .= __("time.units.years.singular");
+            } else {
+                $text .= __("time.units.years.plural");
+            }
         }
 
         if ($elapsedTime->m > 0 && $elapsedTime->y > 0) {
-            $text .= " en ";
+            $text .= " " . __("time.and") . " ";
         }
 
         if ($elapsedTime->m > 0) {
             $text .= $elapsedTime->m . " ";
 
             if ($elapsedTime->m == 1) {
-                $text .= "maand";
+                $text .= __("time.units.months.singular");
             } else {
-                $text .= "maanden";
+                $text .= __("time.units.months.plural");
             }
         }
+
         return $text;
     }
 }

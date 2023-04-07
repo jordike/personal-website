@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="col-2">
-                <a class="btn btn-secondary" href="{{ route("$id.edit", $item) }}">
+                <a class="btn btn-secondary rounded-pill" href="{{ route("$id.edit", $item) }}">
                     <i class="fa-solid fa-pen"></i>
                 </a>
             </div>
@@ -17,7 +17,7 @@
                 <form method="POST" action="{{ route("$id.destroy", $item) }}">
                     @method("DELETE")
                     @csrf
-                    <button class="btn btn-danger" type="submit">
+                    <button class="btn btn-danger rounded-pill" type="submit">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </form>

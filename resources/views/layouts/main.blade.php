@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset("css/style.css") }}" />
     <link rel="shortcut icon" href="{{ asset("favicon.ico") }}" type="image/x-icon">
     @yield("styles")
+    @stack("componentStyles")
     @auth
         @if (auth()->user()->isAdministrator())
             <link rel="stylesheet" href="{{ asset("css/components/AdminOffcanvas.css") }}">
@@ -35,6 +36,7 @@
     @include("components.footer")
 
     @include("components.scripts")
+    @stack("componentScripts")
     @yield("scripts")
 
 </body>

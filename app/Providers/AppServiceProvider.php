@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\EmailVerification;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -30,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
                 ->numbers()
                 ->mixedCase()
                 ->symbols();
+        });
+
+        VerifyEmail::toMailUsing(function(object $notifiable, string $url) {
+            return (new EmailVerification($url))->toMail($notifiable);
         });
     }
 }

@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use App\Models\Experience;
 use App\Models\Project;
+use App\Models\Testimonial;
 use Illuminate\View\Component;
 
 class AdminOffcanvas extends Component
@@ -17,10 +18,12 @@ class AdminOffcanvas extends Component
     {
         $projects = Project::all();
         $experiences = Experience::all();
+        $testimonials = Testimonial::all();
 
         return view("components.admin-offcanvas", [
             "projects" => $projects,
-            "experiences" => $experiences
+            "experiences" => $experiences,
+            "testimonials" => $testimonials
         ]);
     }
 }

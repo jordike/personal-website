@@ -24,43 +24,43 @@
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
                         <a class="nav-link {{ handleActiveRoute("home") }}" href="{{ route("home", [], false) }}">
-                            {{ __("Home") }}
+                            {{ __("components/header.navbar.home") }}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ handleActiveRoute("projects.index") }}" href="{{ route("projects.index", [], false) }}">
-                            {{ __("Projecten") }}
+                            {{ __("components/header.navbar.projects") }}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ handleActiveRoute("experience.index") }}" href="{{ route("experience.index", [], false) }}">
-                            {{ __("Ervaring") }}
+                            {{ __("components/header.navbar.experience") }}
                         </a>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link {{ handleActiveRoute("cv") }}" href="{{ route("cv") }}">
-                            {{ __("CV") }}
+                            {{ __("components/header.navbar.cv") }}
                         </a>
                     </li> --}}
                     <li class="nav-item">
                         <a class="nav-link {{ handleActiveRoute("contact") }}" href="{{ route("contact", [], false) }}">
-                            {{ __("Contact") }}
+                            {{ __("components/header.navbar.contact") }}
                         </a>
                     </li>
                     @if (auth()->check() && auth()->user()->isAdministrator())
                         <li class="dropdown">
                             <button class="btn btn-link nav-item nav-link dropdown-toggle nav-dropdown-toggle" data-bs-toggle="dropdown">
-                                {{ __("Beheer") }}
+                                {{ __("components/header.admin.toggle") }}
                             </button>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a class="dropdown-item nav-link {{ handleActiveRoute("admin.dashboard") }}" href="{{ route("admin.dashboard", [], false) }}">
-                                        {{ __("Dashboard") }}
+                                        {{ __("components/header.admin.dashboard") }}
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item nav-link {{ handleActiveRoute("admin.users.index") }}" href="{{ route("admin.users.index", [], false) }}">
-                                        {{ __("Accountoverzicht") }}
+                                        {{ __("components/header.admin.account-overview") }}
                                     </a>
                                 </li>
                             </ul>
@@ -98,12 +98,12 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <a class="dropdown-item nav-link {{ handleActiveRoute("profile") }}" href="{{ route("profile", [], false) }}">
-                                        {{ __("Mijn profiel") }}
+                                        {{ __("components/header.profile.my-profile") }}
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item nav-link" href="{{ route("logout", [], false) }}">
-                                        {{ __("Uitloggen") }}
+                                        {{ __("components/header.profile.logout") }}
                                     </a>
                                 </li>
                             </ul>
@@ -111,7 +111,7 @@
                     @else
                         <li class="nav-item">
                             <a class="nav-link {{ handleActiveRoute("login") }}" href="{{ route("login", [], false) }}">
-                                {{ __("Inloggen") }}
+                                {{ __("components/header.login") }}
                             </a>
                         </li>
                     @endauth

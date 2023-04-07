@@ -1,6 +1,6 @@
 @extends("layouts.main")
 
-@section("title", __("Inloggen"))
+@section("title", __("pages/login.title"))
 
 @section("styles")
     <link rel="stylesheet" href="{{ asset("css/pages/LoginPage.css") }}" />
@@ -13,20 +13,20 @@
                 <x-status-message></x-status-message>
                 <div class="alert alert-warning alert-dismissible">
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    {{ __("U kunt niet zelf een account aanmaken. Deze worden, indien noodzakelijk, enkel door de beheerder aangemaakt.") }}
+                    {{ __("pages/login.disclaimer") }}
                 </div>
-                <h1>{{ __("Inloggen") }}</h1>
-                <form method="POST" action="/login">
+                <h1>{{ __("pages/login.title") }}</h1>
+                <form method="POST" action="{{ route("login.post") }}">
                     @csrf
                     <div class="form-group">
-                        <label class="form-label">{{ __("E-mail") }}:</label>
-                        <input class="form-control" type="email" name="email" autocomplete="username" value="{{ old("username") }}" />
+                        <label class="form-label">{{ __("pages/login.form.email") }}</label>
+                        <input class="form-control" type="email" name="email" autocomplete="username" value="{{ old("email") }}" />
                         @error("email")
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="form-label">{{ __("Wachtwoord") }}:</label>
+                        <label class="form-label">{{ __("pages/login.form.password") }}</label>
                         <input class="form-control" type="password" name="password" autocomplete="current-password" />
                         @error("password")
                             <span class="text-danger">{{ $message }}</span>
@@ -34,15 +34,18 @@
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
-                            <input class="form-check-input" name="rememberMe" type="checkbox" value="{{ old("rememberMe") }}" />
-                            <label class="form-label">{{ __("Ingelogd blijven") }}</label>
+                            <input id="rememberMe" class="form-check-input" name="rememberMe" type="checkbox" />
+                            <label class="form-label" for="rememberMe">{{ __("pages/login.form.remember-me") }}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <button id="login-submit" type="submit" class="w-100 btn btn-primary">
-                            {{ __("Inloggen") }}
+                            {{ __("pages/login.form.login") }}
                         </button>
                     </div>
+                    <a class="link" href="{{ route("password.request") }}">
+                        {{ __("pages/login.reset-password") }}
+                    </a>
                 </form>
             </div>
         </div>

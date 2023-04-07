@@ -49,12 +49,15 @@ class ContactNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Contact: "' . $this->subject . '" van ' . $this->name . ' <' . $this->emailAddress . '>')
-                    ->line("Er is een nieuw bericht verstuurd via het contact formulier.")
-                    ->line("Het bericht is van " . $this->name . " <" . $this->emailAddress . ">.")
-                    ->line("Het bericht:\n\n")
-                    ->line($this->body)
-                    ->salutation("Met vriendelijke groeten,\nRobot Jordi");
+            ->salutation("Hallo,")
+            ->from("noreply@jordikeijzers.nl", "Contact Formulier")
+            ->subject('Contact: "' . $this->subject . '" van ' . $this->name . ' <' . $this->emailAddress . '>')
+            ->line("Er is een nieuw bericht verstuurd via het contact formulier.")
+            ->line("Het bericht is van " . $this->name . " <" . $this->emailAddress . ">.")
+            ->line("-------------------------------------------------------------------------------")
+            ->line($this->body)
+            ->line("-------------------------------------------------------------------------------")
+            ->salutation("Met vriendelijke groeten,\n\nJordi Keijzers");
     }
 
     /**
@@ -66,7 +69,10 @@ class ContactNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            "name" => $this->name,
+            "email" => $this->emailAddress,
+            "subject" => $this->subject,
+            "body" => $this->body
         ];
     }
 }

@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /admin/
+Disallow: /locale/
 
 Sitemap: https://www.jordikeijzers.nl/sitemap.xml

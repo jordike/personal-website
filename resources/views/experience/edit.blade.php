@@ -1,54 +1,20 @@
 @extends("layouts.main")
 
-@section("title", __("Ervaring bewerken"))
+@section("title", __("pages/experience/edit.title"))
 
 @section("styles")
     <link rel="stylesheet" href="{{ asset("css/pages/ExperiencePage.css") }}" />
-@endsection
-
-@section("scripts")
-    <script src="{{ asset("js/pages/experience.js") }}"></script>
-    <script defer>
-        loadFunctions(@json($experience->functions));
-    </script>
 @endsection
 
 @section("content")
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form method="POST" action="{{ route("experience.update", [ "experience" => $experience ], false) }}">
-                    @method("PUT")
-                    @csrf
-                    <h1>{{ __("Ervaring bewerken") }}</h1>
-                    <div class="form-group">
-                        <label class="form-label required-input">{{ __("Bedrijfsnaam") }}:</label>
-                        <input class="form-control" type="text" name="companyName" value="{{ $experience->company_name }}" />
-                        @error("companyName")
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">{{ __("Bedrijfswebsite") }}:</label>
-                        <input class="form-control" type="url" name="companyWebsite" value="{{ $experience->company_website }}" />
-                        @error("companyWebsite")
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="functions">
-                        <h2>
-                            {{ __("Functie(s)") }}
-                            <button class="btn btn-primary" type="button" onclick="addNewFunction()">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </h2>
-                        <div id="functions"></div>
-                    </div>
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fa-solid fa-plus"></i>
-                        {{ __("Bewerken") }}
-                    </button>
-                </form>
+                @livewire("experience-form", [
+                    "id" => $experience->id,
+                    "method" => "PUT",
+                    "title" => __("pages/experience/edit.component-header")
+                ])
             </div>
         </div>
     </div>
