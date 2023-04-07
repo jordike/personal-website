@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Experience;
 use App\Models\ExperienceFunction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -18,6 +19,22 @@ class ExperienceController extends Controller
     public function index()
     {
         $experiences = Experience::all();
+
+        $experiences = $experiences->sort(function($a, $b) {
+            $endDateA = $a->functions->contains("end_date", null) ? null : 1;
+            $endDateB = $b->functions->contains("end_date", null) ? null : 1;
+
+            if ($endDateA == null && $endDateB != null) {
+                return -1;
+            } else if ($endDateA != null && $endDateB == null) {
+                return 1;
+            } else {
+                $startDateA = Carbon::createFromFormat("Y-m-d", $a->functions->max("start_date"));
+                $startDateB = Carbon::createFromFormat("Y-m-d", $b->functions->max("start_date"));
+
+                return $startDateA < $startDateB ? 1 : -1;
+            }
+        });
 
         return view("experience.index", [
             "experiences" => $experiences
@@ -102,6 +119,8 @@ class ExperienceController extends Controller
         $experience = Experience::find($id);
         $experience->delete();
 
-        return redirect()->route("experience.index");
+        return redirect()
+            ->route("experience.index")
+            ->with("success", __("status-messages/experience.destroyed"));
     }
 }
