@@ -13,7 +13,7 @@
                 <h1 class="mb-3">{{ __("pages/experience/index.title") }}</h1>
 
                 @if (count($experiences) == 0)
-                    <span>{{ __("pages/experience/index.no-experience") }}</span>
+                    <span class="text-muted">{{ __("pages/experience/index.no-experience") }}</span>
                 @else
                     @foreach ($experiences as $experience)
                         <div class="row">

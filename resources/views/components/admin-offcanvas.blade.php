@@ -11,19 +11,37 @@
     </div>
     <div class="offcanvas-body">
         <x-admin.offcanvas-section id="projects" title="projects">
-            @foreach ($projects as $project)
-                <x-admin.offcanvas-row id="projects" :item="$project" :name="$project->name"></x-admin.offcanvas-row>
-            @endforeach
+            @if ($projects->count() == 0)
+                <p class="text-muted">
+                    {{ __("components/admin-offcanvas.empty", [ "section" => strtolower(__("components/offcanvas-section.titles.projects")) ]) }}
+                </p>
+            @else
+                @foreach ($projects as $project)
+                    <x-admin.offcanvas-row id="projects" :item="$project" :name="$project->name"></x-admin.offcanvas-row>
+                @endforeach
+            @endif
         </x-admin.offcanvas-section>
         <x-admin.offcanvas-section id="experience" title="experience">
-            @foreach ($experiences as $experience)
-                <x-admin.offcanvas-row id="experience" :item="$experience" :name="$experience->company_name"></x-admin.offcanvas-row>
-            @endforeach
+            @if ($experiences->count() == 0)
+                <p class="text-muted">
+                    {{ __("components/admin-offcanvas.empty", [ "section" => strtolower(__("components/offcanvas-section.titles.experience")) ]) }}
+                </p>
+            @else
+                @foreach ($experiences as $experience)
+                    <x-admin.offcanvas-row id="experience" :item="$experience" :name="$experience->company_name"></x-admin.offcanvas-row>
+                @endforeach
+            @endif
         </x-admin.offcanvas-section>
         <x-admin.offcanvas-section id="testimonials" title="testimonials">
-            @foreach ($testimonials as $testimonial)
-                <x-admin.offcanvas-row id="testimonials" :item="$testimonial" :name="$testimonial->reviewer_name"></x-admin.offcanvas-row>
-            @endforeach
+            @if ($testimonials->count() == 0)
+                <p class="text-muted">
+                    {{ __("components/admin-offcanvas.empty", [ "section" => strtolower(__("components/offcanvas-section.titles.testimonials")) ]) }}
+                </p>
+            @else
+                @foreach ($testimonials as $testimonial)
+                    <x-admin.offcanvas-row id="testimonials" :item="$testimonial" :name="$testimonial->reviewer_name"></x-admin.offcanvas-row>
+                @endforeach
+            @endif
         </x-admin.offcanvas-section>
     </div>
 </div>
