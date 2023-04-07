@@ -1,6 +1,6 @@
 @extends("layouts.main")
 
-@section("title", __("Accountoverzicht"))
+@section("title", __("pages/admin/users/index.title"))
 
 @section("styles")
     <link rel="stylesheet" href="{{ asset("lib/datatables/datatables.css") }}" />
@@ -14,25 +14,26 @@
 
 @section("content")
     <div class="container">
+        @include("components.status-message")
         <h1 class="mb-2">
-            <span class="me-3">{{ __("Accountoverzicht") }}</span>
+            <span class="me-3">{{ __("pages/admin/users/index.title") }}</span>
             <a class="btn btn-primary rounded-pill" href="{{ route("admin.users.create", [], false) }}">
                 <i class="fa-solid fa-plus"></i>
-                {{-- {{ __("Account aanmaken") }} --}}
             </a>
         </h1>
         <table class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>{{ __("ID") }}</th>
-                    <th>{{ __("Voornaam") }}</th>
-                    <th>{{ __("Achternaam") }}</th>
-                    <th>{{ __("E-mail") }}</th>
-                    <th>{{ __("Telefoonnummer") }}</th>
-                    <th>{{ __("Aangemaakt") }}</th>
-                    <th>{{ __("Laatst bewerkt") }}</th>
-                    <td class="no-sort"></td>
-                    <td class="no-sort"></td>
+                    <th>{{ __("pages/admin/users/index.table-header.id") }}</th>
+                    <th>{{ __("pages/admin/users/index.table-header.first-name") }}</th>
+                    <th>{{ __("pages/admin/users/index.table-header.surname") }}</th>
+                    <th>{{ __("pages/admin/users/index.table-header.email") }}</th>
+                    <th>{{ __("pages/admin/users/index.table-header.phone-number") }}</th>
+                    <th>{{ __("pages/admin/users/index.table-header.created-at") }}</th>
+                    <th>{{ __("pages/admin/users/index.table-header.last-edited") }}</th>
+                    <th>{{ __("pages/admin/users/index.table-header.administrator") }}</th>
+                    <th class="no-sort"></th>
+                    <th class="no-sort"></th>
                 </tr>
             </thead>
             <tbody>
@@ -45,9 +46,16 @@
                         <td><a href="tel:{{ $account->phone_number }}">{{ $account->phone_number }}</a></td>
                         <td>{{ $account->created_at }}</td>
                         <td>{{ $account->updated_at }}</td>
+                        <td class="text-center align-middle h5">
+                            @if ($account->administrator)
+                                <i class="fa-solid fa-check text-success"></i>
+                            @else
+                                <i class="fa-solid fa-x text-danger"></i>
+                            @endif
+                        </td>
                         <td class="d-flex justify-content-center">
                             <div class="d-flex justify-content-center">
-                                <a class="btn btn-secondary" type="button" href="{{ route("admin.users.edit", $account, false) }}">
+                                <a class="btn btn-secondary rounded-pill" type="button" href="{{ route("admin.users.edit", $account, false) }}">
                                     <i class="fa-solid fa-ellipsis"></i>
                                 </a>
                             </div>
@@ -58,7 +66,7 @@
                                     <form method="POST" action="{{ route("admin.users.destroy", $account, false) }}">
                                         @csrf
                                         @method("DELETE")
-                                        <button class="btn btn-danger" type="submit">
+                                        <button class="btn btn-danger rounded-pill" type="submit">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>

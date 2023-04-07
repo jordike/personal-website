@@ -57,9 +57,9 @@ class ProjectsController extends Controller
         $project->links = $request->links;
         $project->save();
 
-        session()->flash("message", "project.created");
-
-        return redirect()->route("projects.index");
+        return redirect()
+            ->route("projects.index")
+            ->with("success", __("status-messages/projects.created"));
     }
 
     /**
@@ -114,9 +114,9 @@ class ProjectsController extends Controller
         $project->links = $request->links;
         $project->update();
 
-        session()->flash("success", "project.updated");
-
-        return redirect()->route("projects.index");
+        return redirect()
+            ->route("projects.index")
+            ->with("success", __("status-messages/projects.edited"));
     }
 
     /**
@@ -132,8 +132,8 @@ class ProjectsController extends Controller
         $project = Project::find($id);
         $project->delete();
 
-        session()->flash("success", "project.deleted");
-
-        return redirect()->route("projects.index");
+        return redirect()
+            ->route("projects.index")
+            ->with("success", __("status-messages/projects.destroyed"));
     }
 }

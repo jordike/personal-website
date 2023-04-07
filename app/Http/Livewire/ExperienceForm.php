@@ -43,7 +43,7 @@ class ExperienceForm extends Component
         $this->functions[] = [
             "id" => null,
             "experience_id" => $this->experienceId,
-            "function_title" => "Nieuwe functie",
+            "function_title" => __("livewire/experience-form.form.functions.new-function"),
             "description" => null,
             "start_date" => null,
             "end_date" => null

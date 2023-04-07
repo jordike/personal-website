@@ -4,38 +4,21 @@
 
 @push("componentScripts")
     @livewireScripts()
-    <script>
-        function updateFunctionTitle(index) {
-            const titleElement = document.getElementById(`function-title-${index}`);
-            const titleInput = document.getElementById(`function-title-input-${index}`);
-
-            if (titleElement === null || titleInput === null) {
-                return;
-            }
-
-            titleElement.textContent = titleInput.value;
-        }
-    </script>
-    <script>
-        window.addEventListener("livewire:load", () => {
-            @this.on("log", message => console.log(message));
-        });
-    </script>
 @endpush
 
 <form wire:submit.prevent="submitForm">
     @csrf
     @method($method)
-    <h1>{{ __("Ervaring") . " " . strtolower($title) }}</h1>
+    <h1>{{ __("livewire/experience-form.experience") . " " . strtolower($title) }}</h1>
     <div class="form-group">
-        <label class="form-label requiraed-input">{{ __("Bedrijfsnaam") }}:</label>
+        <label class="form-label required-input">{{ __("livewire/experience-form.form.company-name") }}</label>
         <input class="form-control" type="text" wire:model.lazy="companyName" />
         @error("companyName")
             <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>
     <div class="form-group">
-        <label class="form-label">{{ __("Bedrijfswebsite") }}:</label>
+        <label class="form-label">{{ __("livewire/experience-form.form.company-website") }}</label>
         <input class="form-control" type="url" wire:model.lazy="companyWebsite" />
         @error("companyWebsite")
             <span class="text-danger">{{ $message }}</span>
@@ -44,9 +27,9 @@
     <div class="functions">
         <h2>
             @if (count($functions) > 1)
-                {{ __("Functies") }}
+                {{ __("livewire/experience-form.form.functions.plural") }}
             @else
-                {{ __("Functie") }}
+                {{ __("livewire/experience-form.form.functions.singular") }}
             @endif
             <button class="btn btn-primary rounded-pill" type="button" wire:click="addFunction">
                 <i class="fa-solid fa-plus"></i>
@@ -72,28 +55,28 @@
                                     </button>
                                     <input type="hidden" name="functions[{{ $index }}][id]" value="{{ $function["id"] }}" />
                                     <div class="form-group">
-                                        <label class="form-label required-input">Functie:</label>
+                                        <label class="form-label required-input">{{ __("livewire/experience-form.form.functions.function-title") }}</label>
                                         <input id="function-title-input-{{ $index }}" class="form-control" type="text" wire:model.lazy="functions.{{ $index }}.function_title" @if ($this->disabled) disabled @endif />
                                         @error("functions." . $index . ".function_title")
                                             <span class="text-danger">{{ __($message) }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label">Omschrijving:</label>
+                                        <label class="form-label">{{ __("livewire/experience-form.form.functions.description") }}</label>
                                         <textarea class="form-control" type="text" wire:model.lazy="functions.{{ $index }}.description" @if ($this->disabled) disabled @endif></textarea>
                                         @error("functions." . $index . ".description")
                                             <span class="text-danger">{{ __($message) }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label required-input">Startdatum:</label>
+                                        <label class="form-label required-input">{{ __("livewire/experience-form.form.functions.start_date") }}</label>
                                         <input class="form-control" type="date" wire:model.lazy="functions.{{ $index }}.start_date" @if ($this->disabled) disabled @endif />
-                                        @error("functions." . $index . ".start_date.0")
+                                        @error("functions." . $index . ".start_date")
                                             <span class="text-danger">{{ __($message) }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label">Einddatum:</label>
+                                        <label class="form-label">{{ __("livewire/experience-form.form.functions.end_date") }}</label>
                                         <input class="form-control" type="date" wire:model.lazy="functions.{{ $index }}.end_date" @if ($this->disabled) disabled @endif />
                                         @error("functions." . $index . ".end_date")
                                             <span class="text-danger">{{ __($message) }}</span>

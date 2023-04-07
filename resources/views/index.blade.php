@@ -1,6 +1,6 @@
 @extends("layouts.main")
 
-@section("title", "Home")
+@section("title", __("pages/homepage.title"))
 
 @section("styles")
     <link rel="stylesheet" href="{{ asset("css/pages/HomePage.css") }}" />
@@ -35,11 +35,11 @@
     <section class="info-section" style="height: fit-content">
         <div class="container">
             <h2 class="section-title">
-                {{ __("Over mij") }}
+                {{ __("pages/homepage.about_me.header") }}
             </h2>
             <div id="about-me-row" class="row">
                 <div class="col-12 col-lg-8">
-                    {!! Str::markdown(__("homepage.about_me")) !!}
+                    {!! Str::markdown(__("pages/homepage.about_me.content")) !!}
                 </div>
                 <div class="col-12 col-md ms-md-3">
                     <div id="portrait"></div>
@@ -51,7 +51,7 @@
     <section class="info-section mb-5">
         <div class="container">
             <h2 class="section-title mb-3">
-                {{ __("Testimonials") }}
+                {{ __("pages/homepage.testimonials") }}
             </h2>
             <x-testimonials class="mb-5"></x-testimonials>
         </div>

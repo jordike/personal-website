@@ -1,6 +1,6 @@
 @extends("layouts.main")
 
-@section("title", __("Ervaring bewerken"))
+@section("title", __("pages/experience/edit.title"))
 
 @section("styles")
     <link rel="stylesheet" href="{{ asset("css/pages/ExperiencePage.css") }}" />
@@ -13,7 +13,7 @@
                 @livewire("experience-form", [
                     "id" => $experience->id,
                     "method" => "PUT",
-                    "title" => __("Bewerken")
+                    "title" => __("pages/experience/edit.component-header")
                 ])
             </div>
         </div>

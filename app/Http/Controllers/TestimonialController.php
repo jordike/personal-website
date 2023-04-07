@@ -54,9 +54,9 @@ class TestimonialController extends Controller
         $testimonial->reviewed_on = $request->reviewedOn;
         $testimonial->save();
 
-        session()->flash("success", "testimonial.created");
-
-        return redirect()->route("home");
+        return redirect()
+            ->route("home")
+            ->with("success", __("status-messages/testimonials.created"));
     }
 
     /**
@@ -112,9 +112,9 @@ class TestimonialController extends Controller
         $testimonial->reviewed_on = $request->reviewedOn;
         $testimonial->update();
 
-        session()->flash("success", "testimonial.updated");
-
-        return redirect()->route("home");
+        return redirect()
+            ->route("home")
+            ->with("success", __("status-messages/testimonials.edited"));
     }
 
     /**
@@ -130,8 +130,8 @@ class TestimonialController extends Controller
         $testimonial = Testimonial::find($id);
         $testimonial->delete();
 
-        session()->flash("success", "testimonial.deleted");
-
-        return redirect()->route("home");
+        return redirect()
+            ->route("home")
+            ->with("success", __("status-messages/testimonials.destroyed"));
     }
 }

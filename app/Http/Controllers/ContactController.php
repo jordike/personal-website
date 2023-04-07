@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Notifications\ContactNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ContactController extends Controller
 {
@@ -23,12 +24,12 @@ class ContactController extends Controller
         ]);
 
         if (auth()->check()) {
-            $user = User::where("email", env("ADMIN_EMAIL"));
-            $user->notify(new ContactNotification($request->name, $request->email, $request->subject, $request->body));
+            Notification::route("mail", env("ADMIN_EMAIL"))
+                ->notify(new ContactNotification($request->name, $request->email, $request->subject, $request->body));
         }
 
         return redirect()
             ->route("contact")
-            ->with("success", "email.email_sent");
+            ->with("success", __("status-messages/contact.sent"));
     }
 }

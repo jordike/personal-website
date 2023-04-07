@@ -1,23 +1,18 @@
 @extends("layouts.main")
 
-@section("title", __("Contact"))
+@section("title", __("pages/contact.title"))
 
 @section("styles")
     <link rel="stylesheet" href="{{ asset("/css/pages/ContactPage.css") }}">
 @endsection
 
 @section("content")
-    @if (isset($message))
-        <div class="alert alert-success">
-            {{ $message }}
-        </div>
-    @endif
-
+    @include("components.status-message")
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h1>
-                    {{ __("Contact") }}
+                    {{ __("pages/contact.title") }}
                 </h1>
                 <div id="contactMethods" class="row justify-content-center">
                     <div class="col-12 col-md">
@@ -25,38 +20,35 @@
                             <form method="POST" action="{{ route("contact.send", [], false) }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label class="form-label required-input">{{ __("Naam") }}:</label>
+                                    <label class="form-label required-input">{{ __("pages/contact.form.name") }}:</label>
                                     <input class="form-control" type="text" name="name" />
                                     @error("name")
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label required-input">{{ __("E-mail") }}:</label>
+                                    <label class="form-label required-input">{{ __("pages/contact.form.email") }}:</label>
                                     <input class="form-control" type="email" name="email" />
                                     @error("email")
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label required-input">{{ __("Onderwerp") }}:</label>
+                                    <label class="form-label required-input">{{ __("pages/contact.form.subject") }}:</label>
                                     <input class="form-control" type="text" name="subject" />
                                     @error("subject")
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label required-input">{{ __("Bericht") }}:</label>
+                                    <label class="form-label required-input">{{ __("pages/contact.form.body") }}:</label>
                                     <textarea class="form-control" name="body"></textarea>
                                     @error("body")
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <small class="text-muted d-block mb-3">
-                                    Uw gegevens worden niet opgeslagen.
-                                </small>
                                 <button class="btn btn-primary" type="submit">
-                                    {{ __("Versturen") }}
+                                    {{ __("pages/contact.form.send") }}
                                 </button>
                             </form>
                         </div>
@@ -65,7 +57,7 @@
                         <div class="ms-md-3 row">
                             <div class="col-12">
                                 <div class="contact-option">
-                                    <h5 class="contact-option-title">E-mail</h5>
+                                    <h5 class="contact-option-title">{{ __("pages/contact.form.email") }}</h5>
                                     <a class="link mb-2 contact-option-content" href="mailto:{{ env("EMAIL_ADDRESS") }}">
                                         {{ env("EMAIL_ADDRESS") }}
                                     </a>
