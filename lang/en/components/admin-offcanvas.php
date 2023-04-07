@@ -1,5 +1,6 @@
 <?php
 
 return [
-    "title" => "Admin"
+    "title" => "Admin",
+    "empty" => "There are no :section yet."
 ];
