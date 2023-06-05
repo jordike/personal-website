@@ -11,5 +11,5 @@ return [
             Kortom, mijn passie voor programmeren en technologie is onbegrensd en ik kijk er naar uit om in de toekomst nog meer te leren en te ontdekken op dit gebied.<br />"
     ],
     "testimonials" => "Testimonials",
-    "no-testimonials" => "Er zijn geen testimonials in de database opgeslagen."
+    "no-testimonials" => "Er zijn nog geen testimonials."
 ];

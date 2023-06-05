@@ -24,14 +24,12 @@ class ExperienceForm extends Component
         "companyName" => "required",
         "companyWebsite" => [ "nullable", "url" ],
         "functions.*.function_title" => "required",
-        "functions.*.description" => [ "nullable", "max:400" ],
         "functions.*.start_date" => [ "required", "date" ],
         "functions.*.end_date" => [ "nullable", "date" ]
     ];
 
     protected $messages = [
         "functions.*.function_title.required" => "function.required",
-        "functions.*.description.max" => "function.max",
         "functions.*.start_date.required" => "function.required",
         "functions.*.start_date.required" => "function.required",
         "functions.*.start_date.date" => "function.date",

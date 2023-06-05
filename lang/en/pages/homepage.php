@@ -11,5 +11,5 @@ return [
             In short, my passion for programming and technology is limitless and I look forward to learning and discovering even more in this field in the future."
     ],
     "testimonials" => "Testimonials",
-    "no-testimonials" => "There are no testimonials saved in the database."
+    "no-testimonials" => "There are no testimonials yet."
 ];

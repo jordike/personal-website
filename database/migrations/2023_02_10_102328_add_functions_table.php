@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("experience_id")->constrained("experiences")->cascadeOnDelete();
             $table->string("function_title");
-            $table->string("description")->nullable();
+            $table->text("description")->nullable();
             $table->date("start_date");
             $table->date("end_date")->nullable();
             $table->timestamps();

@@ -13,7 +13,7 @@
             <div class="container">
                 <h1 class="mb-3 text-center text-sm-start">{{ __("pages/projects/index.title") }}</h1>
                 @if (count($projects) == 0)
-                    <span>{{ __("pages/projects/index.no-projects") }}</span>
+                    <span class="text-muted">{{ __("pages/projects/index.no-projects") }}</span>
                 @else
                     @foreach ($projects as $project)
                         <div class="row">

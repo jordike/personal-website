@@ -17,7 +17,7 @@
             </div>
         @endforeach
     @else
-        <p class="text-muted">
+        <p class="text-muted text-center">
             {{ __("pages/homepage.no-testimonials") }}
         </p>
     @endif
